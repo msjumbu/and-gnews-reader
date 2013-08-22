@@ -90,9 +90,10 @@ public class GoogleNewsParser {
 		public String toString() {
 			// TODO Auto-generated method stub
 			StringBuilder htmlString = new StringBuilder();
-			htmlString.append("<p><a href='");
+			htmlString.append(this.title);
+			htmlString.append("<br/><a href='");
 			htmlString.append(this.link);
-			htmlString.append("'>" + this.title + "</a></p>");
+			htmlString.append("'>Full Story</a><br/>");
 			return htmlString.toString();
 		}
 	}
@@ -167,7 +168,6 @@ public class GoogleNewsParser {
 			XmlPullParserException {
 		parser.require(XmlPullParser.START_TAG, ns, "description");
 		String summary = readText(parser);
-		
 		parser.require(XmlPullParser.END_TAG, ns, "description");
 		return summary;
 	}

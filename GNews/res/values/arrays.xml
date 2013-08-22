@@ -10,5 +10,19 @@
         <item>Wi-Fi</item>
         <item>Any</item>
     </string-array>
-
+    
+    <string-array name="editionNames">
+        <item>India</item>
+        <item>Australia</item>
+        <item>USA</item>
+        <item>Canada</item>
+        <item>UK</item>
+    </string-array>
+    <string-array name="editionValues">
+        <item>in</item>
+        <item>au</item>
+        <item>us</item>
+        <item>ca</item>
+        <item>uk</item>
+    </string-array>
 </resources>

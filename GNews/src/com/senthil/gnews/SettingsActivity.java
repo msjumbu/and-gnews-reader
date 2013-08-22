@@ -33,7 +33,7 @@ public class SettingsActivity extends PreferenceActivity
         super.onCreate(savedInstanceState);
 
         // Loads the XML preferences file.
-        addPreferencesFromResource(R.xml.pref_general);
+        addPreferencesFromResource(R.xml.preferences);
     }
 
     @Override
@@ -56,9 +56,9 @@ public class SettingsActivity extends PreferenceActivity
     }
 
 	@Override
-	public void onSharedPreferenceChanged(SharedPreferences arg0, String arg1) {
-		// TODO Auto-generated method stub
-		
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+			String key) {
+		MainActivity.refreshDisplay = true;
 	}
 
 }

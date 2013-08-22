@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="topics_json_array">{"Topics": [{ "Name":"'Top Stories'" , "Code":"''" },{ "Name":"Nation" , "Code":"n" },{ "Name":"World" , "Code":"w" },{ "Name":"Business" , "Code":"b" },{ "Name":"Technology" , "Code":"tc" },{ "Name":"Entertainment" , "Code":"e" },{ "Name":"Sports" , "Code":"s" },{ "Name":"Science" , "Code":"snc" },{ "Name":"Health" , "Code":"m" },{ "Name":"'More Top Stories'" , "Code":"h" },{ "Name":"'Spot Light'" , "Code":"ir" }]}</string>
+</resources>

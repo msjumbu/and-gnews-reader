@@ -16,14 +16,14 @@ import android.widget.ImageView;
 
 public class ImageLoader extends AsyncTask<Object, String, Bitmap> {
 
-    private ImageView view;
+    private ImageView imageView;
     private Bitmap bitmap = null;
 
     @Override
     protected Bitmap doInBackground(Object... parameters) {
 
         // Get the passed arguments here
-        view = (ImageView) parameters[0];
+        imageView = (ImageView) parameters[0];
         String uri = (String)parameters[1];
         InputStream is;
 		try {
@@ -47,8 +47,9 @@ public class ImageLoader extends AsyncTask<Object, String, Bitmap> {
 
     @Override
     protected void onPostExecute(Bitmap bitmap) {
-        if (bitmap != null && view != null) {
-               	view.setImageBitmap(bitmap);
+        if (bitmap != null && imageView != null) {
+           	imageView.setImageBitmap(bitmap);
+           	imageView.setTag(bitmap);
         }
     }
 }

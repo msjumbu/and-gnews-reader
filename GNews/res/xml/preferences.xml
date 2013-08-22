@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+        android:key="pref_download_images"
+        android:title="@string/download_images"
+        android:summary="@string/download_images_sum"
+        android:defaultValue="true" />
+    <ListPreference
+        android:key="pref_news_edition"
+        android:title="@string/news_edition"
+        android:dialogTitle="@string/news_edition"
+        android:entries="@array/editionNames"
+        android:entryValues="@array/editionValues"
+        android:defaultValue="@string/news_edition_default" />
+</PreferenceScreen>

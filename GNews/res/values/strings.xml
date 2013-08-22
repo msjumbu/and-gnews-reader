@@ -7,10 +7,22 @@
 
     <!-- NetworkActivity -->
     <string name="page_title">Latest News</string>
-    <string name="updated">Last updated:</string>
     <string name="lost_connection">Lost connection.</string>
     <string name="wifi_connected">Wi-Fi reconnected.</string>
     <string name="connection_error">Unable to load content. Check your network connection.</string>
     <string name="xml_error">Error parsing XML.</string>
     <string name="title_activity_news_list">News List</string>
+    <string name="title_activity_main">News</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    
+    <!-- Settings -->
+    <string name="download_images">Download Images</string>
+    <string name="download_images_sum">Select this option,if you are on WIFI or 3G</string>
+    <string name="network_download">When connected to</string>
+    <string name="network_download_sum">Network type</string>
+    <string name="network_download_default">Wi-Fi</string>
+    <string name="news_edition">News Edition</string>
+	<string name="news_edition_default">in</string>
+	<string name="feeds_base_url">http%3A%2F%2Fnews.google.com%2Fnews%2Ffeeds%3Fcf%3Dall%26output%3Drss</string>
 </resources>
