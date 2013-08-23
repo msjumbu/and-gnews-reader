@@ -26,65 +26,47 @@ import android.widget.ListView;
 
 public class MainActivity extends Activity {
 
-	private final static String feedsBaseURL = "https://news.google.com/news/feeds?cf=all&output=rss";
-    public static boolean refreshDisplay = true;
+	// private final static String feedsBaseURL =
+	// "https://news.google.com/news/feeds?cf=all&output=rss";
+	public static boolean			refreshDisplay	= true;
 
+	// private String feedsEditionURL = feedsBaseURL;
 
-	private String feedsEditionURL = feedsBaseURL;
-
-	private DrawerLayout mDrawerLayout;
-	private ListView mDrawerList;
-	private ActionBarDrawerToggle mDrawerToggle;
-	private CharSequence mDrawerTitle;
-	private CharSequence mTitle;
-	DrawerListEntry[] topics = {};
-	private int selectedChannel = 0;
+	private DrawerLayout			mDrawerLayout;
+	private ListView				mDrawerList;
+	private ActionBarDrawerToggle	mDrawerToggle;
+	private CharSequence			mDrawerTitle;
+	private CharSequence			mTitle;
+	DrawerListEntry[]				topics			= {};
+	private int						selectedChannel	= 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		setupFeedURL();
-
 		setContentView(R.layout.activity_main);
 
-		String topicsJSONArrayStr = getResources().getString(
-				R.string.topics_json_array);
-		JSONArray topicsJSONArray = null;
-		ArrayList<DrawerListEntry> dle = new ArrayList<DrawerListEntry>();
-		try {
-			JSONObject json = new JSONObject(topicsJSONArrayStr);
-			topicsJSONArray = json.getJSONArray("Topics");
+		retriveTopics();
 
-			for (int i = 0; i < topicsJSONArray.length(); i++) {
-				JSONObject json_data = topicsJSONArray.getJSONObject(i);
-				DrawerListEntry topic = new DrawerListEntry();
-				topic.newsName = json_data.getString("Name");
-				topic.topicID = json_data.getString("Code");
-				// topic.rssLink = feedsEditionURL + "&topic=" +
-				// json_data.getString("Code");
-				dle.add(topic);
-			}
+		setupDrawer();
 
-		} catch (JSONException e) {
-			e.printStackTrace();
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setHomeButtonEnabled(true);
+
+		if (savedInstanceState == null) {
+			selectItem(selectedChannel);
 		}
+	}
 
-		topics = dle.toArray(topics);
-
+	private void setupDrawer() {
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
 		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
 				GravityCompat.START);
-		// Set the adapter for the list view
 		mDrawerList.setAdapter(new ArrayAdapter<DrawerListEntry>(this,
 				R.layout.drawer_list_item, topics));
-		// Set the list's click listener
 		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-
 		mTitle = mDrawerTitle = getTitle();
-
 		mDrawerToggle = new ActionBarDrawerToggle(this, /* host Activity */
 		mDrawerLayout, /* DrawerLayout object */
 		R.drawable.ic_drawer, /* nav drawer icon to replace 'Up' caret */
@@ -105,32 +87,30 @@ public class MainActivity extends Activity {
 
 		// Set the drawer toggle as the DrawerListener
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-		getActionBar().setHomeButtonEnabled(true);
-
-		if (savedInstanceState == null) {
-			selectItem(selectedChannel);
-		}
-	}
-	
-	@Override
-	protected void onStart() {
-		// TODO Auto-generated method stub
-		super.onStart();
-		setupFeedURL();
-		if (refreshDisplay) {
-			selectItem(selectedChannel);
-			refreshDisplay = false;
-		}
 	}
 
-	private void setupFeedURL() {
-		SharedPreferences sharedPrefs = PreferenceManager
-				.getDefaultSharedPreferences(this);
+	private void retriveTopics() {
+		String topicsJSONArrayStr = getResources().getString(
+				R.string.topics_json_array);
+		JSONArray topicsJSONArray = null;
+		ArrayList<DrawerListEntry> dle = new ArrayList<DrawerListEntry>();
+		try {
+			JSONObject json = new JSONObject(topicsJSONArrayStr);
+			topicsJSONArray = json.getJSONArray("Topics");
 
-		String edition = sharedPrefs.getString("pref_news_edition", "in");
-		feedsEditionURL = feedsBaseURL + "&ned=" + edition;
+			for (int i = 0; i < topicsJSONArray.length(); i++) {
+				JSONObject json_data = topicsJSONArray.getJSONObject(i);
+				DrawerListEntry topic = new DrawerListEntry();
+				topic.newsName = json_data.getString("Name");
+				topic.topicID = json_data.getString("Code");
+				dle.add(topic);
+			}
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		topics = dle.toArray(topics);
 	}
 
 	@Override
@@ -182,8 +162,7 @@ public class MainActivity extends Activity {
 		Fragment fragment = new NewsFragment();
 		DrawerListEntry dle = topics[position];
 		Bundle args = new Bundle();
-		String feedURL = feedsEditionURL + "&topic=" + dle.topicID;
-		args.putString("URL", feedURL);
+		args.putString("TopicCode", dle.topicID);
 		args.putString("Name", dle.newsName);
 		fragment.setArguments(args);
 
@@ -203,14 +182,15 @@ public class MainActivity extends Activity {
 		@Override
 		public void onItemClick(AdapterView parent, View view, int position,
 				long id) {
+			refreshDisplay = true;
 			selectItem(position);
 		}
 
 	}
 
 	private class DrawerListEntry {
-		public String newsName;
-		public String topicID;
+		public String	newsName;
+		public String	topicID;
 
 		@Override
 		public String toString() {
