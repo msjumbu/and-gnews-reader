@@ -18,15 +18,13 @@ import com.senthil.gnews.parsers.GoogleNewsParser.Entry;
 public class LinkedListAdapter<T> extends ArrayAdapter<T> {
 
 	private Context context;
-    private final ImageDownloader imageDownloader = new ImageDownloader();
-    boolean downImages = true;
+//    private final ImageDownloader imageDownloader = new ImageDownloader();
 
 	public LinkedListAdapter(Context context, int resource, T[] objects) {
 		super(context, resource, objects);
 		this.context = context;
 		SharedPreferences sharedPrefs = PreferenceManager
                 .getDefaultSharedPreferences(context);
-		downImages = sharedPrefs.getBoolean("pref_download_images", true);
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -38,7 +36,7 @@ public class LinkedListAdapter<T> extends ArrayAdapter<T> {
 			view = inflater.inflate(R.layout.item, null);
 			holder = new ViewHolder();
 			holder.tvNews = (TextView) view.findViewById(R.id.textView1);
-			holder.ivNewsImage = (ImageView) view.findViewById(R.id.imageView1);
+			//holder.ivNewsImage = (ImageView) view.findViewById(R.id.imageView1);
 			view.setTag(holder);
 		} else {
 			holder = (ViewHolder) view.getTag();
@@ -48,8 +46,7 @@ public class LinkedListAdapter<T> extends ArrayAdapter<T> {
 		if (item != null) {
 			holder.tvNews.setText(Html.fromHtml(item.toString()));
 			holder.tvNews.setMovementMethod(LinkMovementMethod.getInstance());
-			if (downImages)
-				imageDownloader.download("http:" + item.imageLink, holder.ivNewsImage);
+			//imageDownloader.download("http:" + item.imageLink, holder.ivNewsImage);
 		}
 
 		return view;

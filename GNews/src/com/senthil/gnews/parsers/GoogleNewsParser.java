@@ -93,7 +93,7 @@ public class GoogleNewsParser {
 			htmlString.append(this.title);
 			htmlString.append("<br/><a href='");
 			htmlString.append(this.link);
-			htmlString.append("'>Full Story</a><br/>");
+			htmlString.append("'>Full Story</a>");
 			return htmlString.toString();
 		}
 	}

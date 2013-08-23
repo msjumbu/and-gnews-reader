@@ -36,11 +36,10 @@ public final class R {
         public static final int ic_launcher=0x7f020002;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0006;
+        public static final int action_settings=0x7f0a0005;
         public static final int content_frame=0x7f0a0001;
         public static final int drawer_layout=0x7f0a0000;
         public static final int drwTextView1=0x7f0a0004;
-        public static final int imageView1=0x7f0a0005;
         public static final int left_drawer=0x7f0a0002;
         public static final int textView1=0x7f0a0003;
     }
@@ -132,10 +131,6 @@ public final class R {
         public static final int AppTheme=0x7f080001;
     }
     public static final class xml {
-        public static final int pref_data_sync=0x7f040000;
-        public static final int pref_general=0x7f040001;
-        public static final int pref_headers=0x7f040002;
-        public static final int pref_notification=0x7f040003;
-        public static final int preferences=0x7f040004;
+        public static final int preferences=0x7f040000;
     }
 }
