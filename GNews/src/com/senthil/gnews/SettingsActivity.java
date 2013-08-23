@@ -58,7 +58,7 @@ public class SettingsActivity extends PreferenceActivity
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 			String key) {
-		MainActivity.refreshDisplay = true;
+		NewsActivity.refreshDisplay = true;
 	}
 
 }

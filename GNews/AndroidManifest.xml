@@ -25,7 +25,7 @@
             android:label="@string/title_activity_settings" >
         </activity>
         <activity
-            android:name="com.senthil.gnews.MainActivity"
+            android:name="com.senthil.gnews.NewsActivity"
             android:label="@string/title_activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

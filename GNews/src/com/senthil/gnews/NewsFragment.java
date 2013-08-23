@@ -20,7 +20,6 @@ public class NewsFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.activity_news_main, container,
 				false);
-//		this.URL = getArguments().getString("URL");
 		this.topicCode = getArguments().getString("TopicCode");
 		getActivity().setTitle(getArguments().getString("Name"));
 		return view;
@@ -37,12 +36,11 @@ public class NewsFragment extends Fragment {
 	
 	@Override
 	public void onStart() {
-		// TODO Auto-generated method stub
 		super.onStart();
 		setupFeedURL();
-		if (MainActivity.refreshDisplay) {
+		if (NewsActivity.refreshDisplay) {
 			loadPage();
-			MainActivity.refreshDisplay = false;
+			NewsActivity.refreshDisplay = false;
 		}
 	}
 
