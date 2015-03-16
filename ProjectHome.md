@@ -1,0 +1,1 @@
+Simple Android app to list news from Google News
